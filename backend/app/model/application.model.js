@@ -26,18 +26,22 @@ module.exports = (sequelize, Sequelize) => {
         });
     
     Application.associate = (models) => {
-        Application.hasMany(models.job_seeker, {
+        Application.belongsTo(models.job_seeker, {
             foreignKey: 'job_seeker_id',
             onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-            sourceKey: 'id'
+            onUpdate: 'CASCADE'
         });
 
-        Application.hasMany(models.job, {
+        Application.belongsTo(models.job, {
             foreignKey: 'job_id',
             onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-            sourceKey: 'id'
+            onUpdate: 'CASCADE'
+        });
+
+        Application.belongsTo(models.employer, {
+            foreignKey: 'job_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
         });
     };
 

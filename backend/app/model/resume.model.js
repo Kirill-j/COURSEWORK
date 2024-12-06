@@ -21,11 +21,12 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.TEXT
             },
             created_at: {
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.NOW
             }
         });
     Resume.associate = (models) => {
-        Resume.hasMany(models.job_seeker, {
+        Resume.belongsTo(models.job_seeker, {
             foreignKey: 'job_seeker_id',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE'

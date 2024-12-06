@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
         'user',
         {
             id: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.INTEGER(10),
                 autoIncrement: true,
                 primaryKey: true
             },
@@ -17,20 +17,26 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.TEXT
             },
             created_at: {
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.NOW
             },
             update_at: {
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.NOW
             }
         });
 
     User.associate = (models) => {
-        User.belongsTo(models.employer, {
-            foreignKey: 'user_id'
+        User.hasOne(models.employer, {
+            foreignKey: 'user_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
         });
 
-        User.belongsTo(models.job_seeker, {
-            foreignKey: 'user_id'
+        User.hasOne(models.job_seeker, {
+            foreignKey: 'user_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
         });
     }    
 

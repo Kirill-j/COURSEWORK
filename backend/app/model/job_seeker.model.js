@@ -28,27 +28,34 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.TEXT
             },
             created_at: {
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.NOW
             }
         });
 
     JobSeeker.associate = (models) => {
-        JobSeeker.hasMany(models.user, {
+        JobSeeker.belongsTo(models.user, {
             foreignKey: 'user_id',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE'
         });
 
-        JobSeeker.belongsTo(models.application, {
-            foreignKey: 'job_seeker_id'
+        JobSeeker.hasMany(models.application, {
+            foreignKey: 'job_seeker_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
         });
 
-        JobSeeker.belongsTo(models.employer_review, {
-            foreignKey: 'job_seeker_id'
+        JobSeeker.hasMany(models.employer_review, {
+            foreignKey: 'job_seeker_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
         })
 
-        JobSeeker.belongsTo(models.resume, {
-            foreignKey: 'job_seeker_id'
+        JobSeeker.hasOne(models.resume, {
+            foreignKey: 'job_seeker_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
         })
     };
 

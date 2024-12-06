@@ -23,19 +23,19 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.TEXT
             },
             created_at: {
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.NOW
             }
         });
     
     EmployerReview.associate = (models) => {
-        EmployerReview.hasMany(models.job_seeker, {
+        EmployerReview.belongsTo(models.job_seeker, {
             foreignKey: 'job_seeker_id',
             onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-            sourceKey: 'id'
+            onUpdate: 'CASCADE'
         });
 
-        EmployerReview.hasOne(models.employer, {
+        EmployerReview.belongsTo(models.employer, {
             foreignKey: 'employer_id',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE'

@@ -50,7 +50,7 @@ exports.delete = (req, res) => {
                 id: req.params.id
             }
         }
-    ).then(object => {
+    ).then(() => {
         globalFunctions.sendResult(res, 'Запись удалена');
     }).catch(err => {
         globalFunctions.sendError(res, err);
