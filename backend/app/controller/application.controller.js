@@ -95,15 +95,3 @@ var application = {
 // }).catch((err) => {
 //     console.log(err)
 // })
-
-fetch('http://localhost:3000/api/deleteApplication/3', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-    },
-    body: JSON.stringify(application)
-}).then((res) => {
-    console.log(res)
-}).catch((err) => {
-    console.log(err)
-})
