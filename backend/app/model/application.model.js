@@ -19,7 +19,9 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.TEXT
             },
             applied_at: {
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.NOW,
+                allowNull: false
             }
         });
     

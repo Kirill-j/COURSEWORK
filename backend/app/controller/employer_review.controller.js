@@ -1,0 +1,1 @@
+var globalFunctions = require('../config/global.functions.js');
