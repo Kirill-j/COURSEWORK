@@ -14,7 +14,8 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.TEXT
             },
             user_type: {
-                type: Sequelize.TEXT
+                type: Sequelize.TEXT,
+                allowNull: false
             },
             created_at: {
                 type: Sequelize.DATE,
@@ -28,9 +29,8 @@ module.exports = (sequelize, Sequelize) => {
 
     User.associate = (models) => {
         User.hasOne(models.employer, {
-            foreignKey: 'user_id',
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE'
+            foreignKey: 'user_type',
+            sourceKey: 'user_type'
         });
 
         User.hasOne(models.job_seeker, {

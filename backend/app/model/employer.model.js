@@ -7,8 +7,8 @@ module.exports = (sequelize, Sequelize) => {
                 autoIncrement: true,
                 primaryKey: true
             },
-            user_id: {
-                type: Sequelize.INTEGER(10),
+            user_type: {
+                type: Sequelize.TEXT,
                 allowNull: false
             },
             company_name: {
@@ -30,7 +30,8 @@ module.exports = (sequelize, Sequelize) => {
 
     Employer.associate = (models) => {
         Employer.belongsTo(models.user, {
-            foreignKey: 'user_id',
+            foreignKey: 'user_type',
+            targetKey: 'user_type',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE'
         });

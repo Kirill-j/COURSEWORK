@@ -39,7 +39,7 @@ module.exports = (sequelize, Sequelize) => {
         });
 
         Application.belongsTo(models.employer, {
-            foreignKey: 'job_id',
+            foreignKey: 'employer_id',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE'
         });
